@@ -7,19 +7,21 @@ import OutLinedButton from '../UI/OutLinedButtons';
 function ImagePicker ({onTakeImage}) {
 
     const [ImagePicked, setImagePicked] = useState();
-    const [cameraPermissionInformation, requsetPermession] = useCameraPermissions(); // for iOS Device
+    const [cameraPermissionInformation, requestPermission] = useCameraPermissions(); // for iOS Device
 
   async function verifyPermissions() // for iOS Device
   {
     if(cameraPermissionInformation.status === PermissionStatus.UNDETERMINED)
     {
-       const response = await requsetPermession();
+       const response = await requestPermission();
        
        return response.granted
     }
 
     if(cameraPermissionInformation.status === PermissionStatus.DENIED)
     {
+        const response = await requestPermission();
+        
         Alert.alert('Permisson Denied', 'You need to grant camera permissions')
 
         return false

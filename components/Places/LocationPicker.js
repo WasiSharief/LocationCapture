@@ -56,6 +56,8 @@ function LocationPicker ({ onPickLocation }) {
     }
 
     if (locationPermissionInformation.status === PermissionStatus.DENIED) {
+      
+      const response = await requsetPermession()
       Alert.alert('Permisson Denied', 'You need to grant location permissions')
 
       return false
